@@ -1,2 +1,2 @@
 # trigger
-Text parser.
+A simple text parser.
