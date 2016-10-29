@@ -59,10 +59,12 @@ examples.append(u'2016-10-27-182311_1024x600_scrot-мкрк-паттерн-thus-
 examples.append(u'2016-10-27-203151_1024x600_scrot-вопрос-sloc.png')
 
 def lexem_category(unicode_character):
+    """Returns Unicode Category name of the symbol."""
     import unicodedata
     return unicodedata.category(unicode_character)
 
 def lexem_type(unicode_character):
+    """Returns the 1st symbol of Unicode Category name of the symbol."""
     return lexem_category(unicode_character)[:1]
 
 for number, sentence in enumerate(examples):
