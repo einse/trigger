@@ -58,5 +58,17 @@ examples.append(u'2016-10-27-180401_1024x600_scrot-мкрк-английский
 examples.append(u'2016-10-27-182311_1024x600_scrot-мкрк-паттерн-thus-запятая.png')
 examples.append(u'2016-10-27-203151_1024x600_scrot-вопрос-sloc.png')
 
-for i, v in enumerate(examples):
-    print i, v
+def lexem_category(unicode_character):
+    import unicodedata
+    return unicodedata.category(unicode_character)
+
+def lexem_type(unicode_character):
+    return lexem_category(unicode_character)[:1]
+
+for number, sentence in enumerate(examples):
+    print number, sentence
+    number_length = len(str(number))
+    sentence_map = ''
+    for i, symbol in enumerate(sentence):
+        sentence_map = sentence_map + lexem_type(symbol)
+    print ' ' * number_length, sentence_map
