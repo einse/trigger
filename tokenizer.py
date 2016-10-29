@@ -68,6 +68,7 @@ examples.append(u'2016-10-27-164752_1024x600_scrot-мкрк-английский
 examples.append(u'2016-10-27-170315_1024x600_scrot-мкрк-перевод-английский-язык-паттерн-не-забудьте-vbi--remember-to-vbi.png')
 examples.append(u'2016-10-27-180401_1024x600_scrot-мкрк-английский-язык-артикли.png')
 examples.append(u'2016-10-27-182311_1024x600_scrot-мкрк-паттерн-thus-запятая.png')
+examples.append(u'2016-10-27-203151_1024x600_scrot-вопрос-sloc.png')
 
 for i, v in enumerate(examples):
     print i, v
