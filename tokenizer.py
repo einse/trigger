@@ -1,17 +1,5 @@
 # -*- coding: utf-8 -*-
 
-## Examples of input strings
-
-# Extra (for 'the next level'): 
-# 2016-10-27-101359_1024x600_scrot-мкрк-редактура-вопрос-английский-язык--запятая--артикль--смысл-невнятица.png
-# \- 'Add a button which will "repair" under-gone block'
-# 2016-10-27-163612_1024x600_scrot-search-for-prime-numbers.png
-# /via docs.python.org
-# \- 'This is exemplified by the following loop, which searches for prime numbers:'
-# 2016-10-27-170731_1024x600_scrot-so-make-a-habit-of-it-comma.png
-# /via docs.python.org
-# \- '...it’s good practice to include docstrings in code that you write, so make a habit of it.'
-
 examples = [];
 examples.append(u'2016-10-25-202044_1024x600_scrot-мкрк-редактура-лишняя-запятая-паттерн-например-теория-близости.png')
 examples.append(u'2016-10-26-085757_1024x600_scrot-мкрк-диз-бонтекст-типографика-знак-охраны-авторского-права-2.png')
