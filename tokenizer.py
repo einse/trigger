@@ -188,11 +188,12 @@ def get_value(dictionary, key):
 def get_rate(key):
     return get_value(words, key)
 
-header('*'*72, """Top""", count, """words""", '*'*72)
+asterisks = """*""" * 72
+header(asterisks, """Top""", count, """words""", asterisks)
 nominees = sorted(words.keys(), key=lambda v: words[v], reverse=True)[:count]
 for place, word in enumerate(nominees):
     print place, word
 
-show('Tokens index volume:', len(words.keys()))
+show("""Tokens index volume:""", len(words.keys()))
 
 favorite_tokens = set(['Снимок', 'scrot', 'мкрк'])
