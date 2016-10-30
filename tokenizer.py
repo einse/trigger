@@ -1,5 +1,23 @@
 # -*- coding: utf-8 -*-
 
+def header(*strings):
+    print ''
+    print '#'
+    for string in strings:
+        print '#', string
+    print '#'
+    print ''
+
+def show(*strings, **keyworded):
+    print ''
+    print '~'
+    for string in strings:
+        print '~', string
+    for string in keyworded:
+        pass  # edit
+    print '~'
+    print ''
+
 examples = [];
 examples.append(u'2016-10-25-202044_1024x600_scrot-мкрк-редактура-лишняя-запятая-паттерн-например-теория-близости.png')
 examples.append(u'2016-10-26-085757_1024x600_scrot-мкрк-диз-бонтекст-типографика-знак-охраны-авторского-права-2.png')
@@ -58,6 +76,11 @@ examples.append(u'2016-10-27-180401_1024x600_scrot-мкрк-английский
 examples.append(u'2016-10-27-182311_1024x600_scrot-мкрк-паттерн-thus-запятая.png')
 examples.append(u'2016-10-27-203151_1024x600_scrot-вопрос-sloc.png')
 
+
+#
+# Create a lexem category map for every input string
+#
+
 def lexem_category(unicode_character):
     """Returns Unicode Category name of the symbol."""
     import unicodedata
@@ -67,10 +90,78 @@ def lexem_type(unicode_character):
     """Returns the 1st symbol of Unicode Category name of the symbol."""
     return lexem_category(unicode_character)[:1]
 
+header("""Create a lexem category map for every input string""")
+maps = []
 for number, sentence in enumerate(examples):
     print number, sentence
     number_length = len(str(number))
     sentence_map = ''
-    for i, symbol in enumerate(sentence):
+    for position, symbol in enumerate(sentence):
         sentence_map = sentence_map + lexem_type(symbol)
+    maps.append(sentence_map)
     print ' ' * number_length, sentence_map
+
+
+#
+# Print lexem category maps
+#
+
+#~ header("""Print lexem category maps""")
+#~ for number, map in enumerate(maps):
+    #~ print number, map
+
+
+#
+# Get list of tokens
+# for sentence no.:
+#~ example_number = 52
+#~ example_number = 2
+#~ example_number = 18
+#~ example_number = 31
+#~ example_number = 16
+example_number = 20
+#~ example_number = -1
+
+def no_space_conjunction(tag1, tag2):
+    """If two tags represents one number and one letter."""
+    if tag1 == 'L' and tag2 == 'N':
+        return True
+    elif tag1 == 'N' and tag2 == 'L':
+        return True
+    else:
+        return False
+
+#~ header("""Get list of tokens for sentence no.:""", example_number)
+tokens = []
+stack = []
+previous_tag = ''
+for position, symbol in enumerate(examples[example_number]):
+    tag = maps[example_number][position]
+    #~ print position, symbol, tag, previous_tag
+    if tag == 'L' or tag == 'N':
+        if no_space_conjunction(tag, previous_tag):
+            if stack:
+                tokens.append(''.join(stack))
+                stack = []
+            else:
+                pass  # should be never reached
+        stack.append(symbol)
+    else:
+        if stack:
+            tokens.append(''.join(stack))
+            stack = []
+        tokens.append(symbol)
+    previous_tag = tag
+else:
+    if stack:
+        tokens.append(''.join(stack))
+
+#~ show(stack, ''.join(stack))
+
+#
+# Print tokens (for one sentence for now)
+#
+
+header("""Print tokens for:""", example_number)
+for number, token in enumerate(tokens):
+    print number, token
