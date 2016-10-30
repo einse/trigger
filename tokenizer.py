@@ -112,15 +112,10 @@ for number, sentence in enumerate(examples):
 
 
 #
-# Get list of tokens
-# for sentence no.:
-#~ example_number = 52
-#~ example_number = 2
-#~ example_number = 18
-#~ example_number = 31
-#~ example_number = 16
-example_number = 20
-#~ example_number = -1
+# Create a portion: a list of lists of tokens of every input sentence
+#
+
+portion = []
 
 def no_space_conjunction(tag1, tag2):
     """If two tags represents one number and one letter."""
@@ -131,38 +126,46 @@ def no_space_conjunction(tag1, tag2):
     else:
         return False
 
-#~ header("""Get list of tokens for sentence no.:""", example_number)
-tokens = []
-stack = []
-previous_tag = ''
-for position, symbol in enumerate(examples[example_number]):
-    tag = maps[example_number][position]
-    #~ print position, symbol, tag, previous_tag
-    if tag == 'L' or tag == 'N':
-        if no_space_conjunction(tag, previous_tag):
+for example_number, sentence in enumerate(examples):
+    tokens = []
+    stack = []
+    previous_tag = ''
+    for position, symbol in enumerate(sentence):
+        tag = maps[example_number][position]
+        #~ print position, symbol, tag, previous_tag
+        if tag == 'L' or tag == 'N':
+            if no_space_conjunction(tag, previous_tag):
+                if stack:
+                    tokens.append(''.join(stack))
+                    del stack[:]
+                else:
+                    pass  # should be never reached
+            stack.append(symbol)
+        else:
             if stack:
                 tokens.append(''.join(stack))
                 del stack[:]
-            else:
-                pass  # should be never reached
-        stack.append(symbol)
+            tokens.append(symbol)
+        previous_tag = tag
     else:
         if stack:
             tokens.append(''.join(stack))
             del stack[:]
-        tokens.append(symbol)
-    previous_tag = tag
-else:
-    if stack:
-        tokens.append(''.join(stack))
-        del stack[:]
+    portion.append(tokens)
 
-#~ show(stack, ''.join(stack))  # first, delete the closest del statement
 
 #
-# Print tokens (for one sentence for now)
+# Print all the tokens of the current input portion
 #
 
-header("""Print tokens for:""", example_number)
-for number, token in enumerate(tokens):
-    print number, token
+for number, sentence in enumerate(portion):
+    header('=' * 72, """Tokens list no.:""", number)
+    for member, token in enumerate(sentence):
+        print member, token
+
+
+#
+# Gather tokens into statistics dictionary named words
+#
+
+words = {}
