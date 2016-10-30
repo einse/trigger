@@ -160,8 +160,8 @@ for example_number, sentence in enumerate(examples):
 
 for number, sentence in enumerate(portion):
     header('=' * 72, """Tokens list no.:""", number)
-    for member, token in enumerate(sentence):
-        print member, token
+    for volume, token in enumerate(sentence):
+        print volume, token
 
 
 #
@@ -169,3 +169,26 @@ for number, sentence in enumerate(portion):
 #
 
 words = {}
+for number, sentence in enumerate(portion):
+    for volume, token in enumerate(sentence):
+        if token in words:
+            words[token] = words[token] + 1
+        else:
+            words[token] = 0
+
+
+#
+# Print words rating
+# (top:
+count = 50
+
+def get_value(dictionary, key):
+    return dictionary[key]
+
+def get_rate(key):
+    return get_value(words, key)
+
+header('*'*72, """Top""", count, """words""", '*'*72)
+nominees = sorted(words.keys(), key=lambda v: words[v], reverse=True)[:count]
+for rate, word in enumerate(nominees):
+    print rate, word
