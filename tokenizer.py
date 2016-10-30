@@ -158,10 +158,10 @@ for example_number, sentence in enumerate(examples):
 # Print all the tokens of the current input portion
 #
 
-for number, sentence in enumerate(portion):
-    header('=' * 72, """Tokens list no.:""", number)
-    for seat, token in enumerate(sentence):
-        print seat, token
+#~ for number, sentence in enumerate(portion):
+    #~ header('=' * 72, """Tokens list no.:""", number)
+    #~ for seat, token in enumerate(sentence):
+        #~ print seat, token
 
 
 #
