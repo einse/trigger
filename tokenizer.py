@@ -190,7 +190,7 @@ def get_rate(key):
 
 header('*'*72, """Top""", count, """words""", '*'*72)
 nominees = sorted(words.keys(), key=lambda v: words[v], reverse=True)[:count]
-for rate, word in enumerate(nominees):
-    print rate, word
+for place, word in enumerate(nominees):
+    print place, word
 
 show('Tokens index volume:', len(words.keys()))
