@@ -194,3 +194,5 @@ for place, word in enumerate(nominees):
     print place, word
 
 show('Tokens index volume:', len(words.keys()))
+
+favorite_tokens = set(['Снимок', 'scrot', 'мкрк'])
