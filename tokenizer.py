@@ -142,21 +142,22 @@ for position, symbol in enumerate(examples[example_number]):
         if no_space_conjunction(tag, previous_tag):
             if stack:
                 tokens.append(''.join(stack))
-                stack = []
+                del stack[:]
             else:
                 pass  # should be never reached
         stack.append(symbol)
     else:
         if stack:
             tokens.append(''.join(stack))
-            stack = []
+            del stack[:]
         tokens.append(symbol)
     previous_tag = tag
 else:
     if stack:
         tokens.append(''.join(stack))
+        del stack[:]
 
-#~ show(stack, ''.join(stack))
+#~ show(stack, ''.join(stack))  # first delete the last del statement above
 
 #
 # Print tokens (for one sentence for now)
