@@ -118,7 +118,7 @@ for number, sentence in enumerate(examples):
 portion = []
 
 def no_space_conjunction(tag1, tag2):
-    """If two tags represents one number and one letter."""
+    """If two tags represent one number and one letter."""
     if tag1 == 'L' and tag2 == 'N':
         return True
     elif tag1 == 'N' and tag2 == 'L':
