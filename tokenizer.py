@@ -157,7 +157,7 @@ else:
         tokens.append(''.join(stack))
         del stack[:]
 
-#~ show(stack, ''.join(stack))  # first delete the last del statement above
+#~ show(stack, ''.join(stack))  # first, delete the closest del statement
 
 #
 # Print tokens (for one sentence for now)
