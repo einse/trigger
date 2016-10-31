@@ -204,4 +204,4 @@ for place, word in enumerate(white_list):
 
 show("""Tokens index volume:""", len(words.keys()))
 
-favorite_tokens = set(['Снимок', 'scrot', 'мкрк'])
+favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
