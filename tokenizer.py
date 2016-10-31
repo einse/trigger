@@ -202,6 +202,6 @@ for place, word in enumerate(white_list):
         break
     print place+1, word
 
-show("""Tokens index volume:""", len(words.keys()))
+show("""Tokens Index volume:""", len(words.keys()))
 
 favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
