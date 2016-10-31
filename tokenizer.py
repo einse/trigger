@@ -200,7 +200,7 @@ white_list = filter(lambda v: v not in black_list, real_words)
 for place, word in enumerate(white_list):
     if place >= count:
         break
-    print place, word
+    print place+1, word
 
 show("""Tokens index volume:""", len(words.keys()))
 
