@@ -21,6 +21,9 @@ def show(*strings, **keyworded):
 favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
 filter_input_strings = False
 
+f = open('examples.txt', 'r')
+f.close();
+
 examples = [];
 examples.append(u'2016-10-25-202044_1024x600_scrot-мкрк-редактура-лишняя-запятая-паттерн-например-теория-близости.png')
 examples.append(u'2016-10-26-085757_1024x600_scrot-мкрк-диз-бонтекст-типографика-знак-охраны-авторского-права-2.png')
