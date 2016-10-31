@@ -18,26 +18,65 @@ def show(*strings, **keyworded):
     print '~'
     print ''
 
-favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
-filter_input_strings = False
+#~ favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
+favorite_tokens = set([u'диз', u'мкрк'])
+filter_input_strings = True
+input_strings_count_limit = 20
+
+allow_filewalking = True
+allow_txt_file = False
+
+#
+# Create a list for strings
+#
+examples = []
 
 
 #
-# Read input strings
+# Read names of files
 #
-examples = [];
 
-import codecs
-f = codecs.open('examples.txt', 'r', encoding='utf-8')
-    # can 'rb' mode cause smth on Windows?
-for line in f:
-    examples.append(filter(lambda v: v != '\n', line))
-f.close()
+if allow_filewalking:
+    names = []
+    import os
+    # TODO: Raise an exception, if directory doesn't exist.
+    for root, directories, filenames in os.walk(u'/home/nce/Изображения'):
+        for filename in filenames:
+            names.append(filename)
+    for i, v in enumerate(names):
+        if filter_input_strings:
+            found = False
+            for favorite in favorite_tokens:
+                if v.find(favorite) == -1:
+                    continue
+                else:
+                    found = True
+            if not found:
+                continue
+        examples.append(v)
+    show("""Size of 'names':""", len(names))
+    show("""Size of 'examples':""", len(examples))
+    del names[:]  # Is it necessary? Wouldn't GC erase it by himself?
+
+
+#
+# Read strings from a txt-file
+#
+
+if allow_txt_file:
+    import codecs
+    # TODO: Raise an exception, if file doesn't exist.
+    f = codecs.open('examples.txt', 'r', encoding='utf-8')
+        # can 'rb' mode cause smth on Windows?
+    for line in f:
+        examples.append(filter(lambda v: v != '\n', line))
+    f.close()
 
 
 #
 # Create a lexem category map for every input string
 #
+maps = []
 
 def lexem_category(unicode_character):
     """Returns Unicode Category name of the symbol."""
@@ -49,15 +88,15 @@ def lexem_type(unicode_character):
     return lexem_category(unicode_character)[:1]
 
 header("""Create a lexem category map for every input string""")
-maps = []
 for number, sentence in enumerate(examples):
-    print number, sentence
     number_length = len(str(number))
     sentence_map = ''
     for position, symbol in enumerate(sentence):
         sentence_map = sentence_map + lexem_type(symbol)
     maps.append(sentence_map)
-    print ' ' * number_length, sentence_map
+    if number < input_strings_count_limit:
+        print number, sentence
+        print ' ' * number_length, sentence_map
 
 
 #
@@ -72,7 +111,6 @@ for number, sentence in enumerate(examples):
 #
 # Create a portion: a list of lists of tokens of every input sentence
 #
-
 portion = []
 
 def no_space_conjunction(tag1, tag2):
@@ -125,8 +163,8 @@ for example_number, sentence in enumerate(examples):
 #
 # Gather tokens into statistics dictionary named words
 #
-
 words = {}
+
 for number, sentence in enumerate(portion):
     for seat, token in enumerate(sentence):
         if token in words:
