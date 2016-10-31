@@ -182,21 +182,14 @@ for number, sentence in enumerate(portion):
 # (top:
 count = 50
 
-def get_value(dictionary, key):
-    return dictionary[key]
-
-def get_rate(key):
-    return get_value(words, key)
-
-def if_real_word(token):
-    return lexem_type(token[0]) == 'L'
-
 asterisks = """*""" * 72
 header(asterisks, """Top""", count, """words""", asterisks)
+
 nominees = sorted(words.keys(), key=lambda v: words[v], reverse=True)[:count*2]
-real_words = filter(if_real_word, nominees)
+real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
 black_list = set([u'png', u'scrot', u'x', u'Снимок', u'экрана', u'от'])
 white_list = filter(lambda v: v not in black_list, real_words)
+
 for place, word in enumerate(white_list):
     if place >= count:
         break
