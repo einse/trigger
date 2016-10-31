@@ -18,6 +18,9 @@ def show(*strings, **keyworded):
     print '~'
     print ''
 
+favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
+filter_input_strings = False
+
 examples = [];
 examples.append(u'2016-10-25-202044_1024x600_scrot-мкрк-редактура-лишняя-запятая-паттерн-например-теория-близости.png')
 examples.append(u'2016-10-26-085757_1024x600_scrot-мкрк-диз-бонтекст-типографика-знак-охраны-авторского-права-2.png')
@@ -196,5 +199,3 @@ for place, word in enumerate(white_list):
     print place+1, word
 
 show("""Tokens Index volume:""", len(words.keys()))
-
-favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
