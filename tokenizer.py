@@ -23,7 +23,7 @@ favorite_tokens = set([u'диз', u'мкрк'])
 forbidden_tokens = set([u'Снимок'])
 filter_input_strings = True
 
-input_strings_count_limit = 20
+limit_for_print = 20
 
 allow_filewalking = True
 allow_txt_file = False
@@ -97,7 +97,7 @@ for number, sentence in enumerate(examples):
     for position, symbol in enumerate(sentence):
         sentence_map = sentence_map + lexem_type(symbol)
     maps.append(sentence_map)
-    if number < input_strings_count_limit:
+    if number < limit_for_print:
         print number, sentence
         print ' ' * number_length, sentence_map
 
