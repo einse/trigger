@@ -55,6 +55,14 @@ if allow_filewalking:
                     found = True
             if not found:
                 continue
+            found = False
+            for forbidden in forbidden_tokens:
+                if v.find(forbidden) == -1:
+                    continue
+                else:
+                    found = True
+            if found:
+                continue
         examples.append(v)
     show("""Size of 'names':""", len(names))
     show("""Size of 'examples':""", len(examples))
