@@ -20,7 +20,9 @@ def show(*strings, **keyworded):
 
 #~ favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
 favorite_tokens = set([u'диз', u'мкрк'])
+forbidden_tokens = set([u'Снимок'])
 filter_input_strings = True
+
 input_strings_count_limit = 20
 
 allow_filewalking = True
