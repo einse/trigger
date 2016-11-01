@@ -64,8 +64,8 @@ if allow_filewalking:
             if found:
                 continue
         examples.append(v)
-    show("""Size of 'names':""", len(names))
-    show("""Size of 'examples':""", len(examples))
+    show("""Count of read filenames:""", len(names))
+    show("""Count of input strings for tokenizer:""", len(examples))
     del names[:]  # Is it necessary? Wouldn't GC erase it by himself?
 
 
