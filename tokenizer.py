@@ -77,6 +77,7 @@ if allow_txt_file:
 # Create a lexem category map for every input string
 #
 maps = []
+examples = sorted(examples, reverse=True)
 
 def lexem_category(unicode_character):
     """Returns Unicode Category name of the symbol."""
