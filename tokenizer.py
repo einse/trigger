@@ -23,10 +23,10 @@ favorite_tokens = set([u'диз', u'мкрк'])
 forbidden_tokens = set([u'Снимок'])
 filter_input_strings = True
 
-limit_for_print = 20
+limit_for_print = 100
 
-allow_filewalking = True
-allow_txt_file = False
+allow_filewalking = False
+allow_txt_file = True
 
 #
 # Create a list for strings
@@ -70,7 +70,7 @@ if allow_filewalking:
 
 
 #
-# Read strings from a txt-file
+# Read strings from a simple text file (.txt)
 #
 
 if allow_txt_file:
@@ -100,6 +100,7 @@ def lexem_type(unicode_character):
 
 header("""Create a lexem category map for every input string""")
 for number, sentence in enumerate(examples):
+    number = number + 1
     number_length = len(str(number))
     sentence_map = ''
     for position, symbol in enumerate(sentence):
@@ -120,7 +121,7 @@ for number, sentence in enumerate(examples):
 
 
 #
-# Create a portion: a list of lists of tokens of every input sentence
+# Create a portion: lists of tokens (by one list per every input sentence)
 #
 portion = []
 
