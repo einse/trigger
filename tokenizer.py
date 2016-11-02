@@ -66,6 +66,7 @@ if allow_filewalking:
     names = []
     import os
     # TODO: Raise an exception, if directory doesn't exist.
+    # TODO: Only scan the current directory(?)
     for root, directories, filenames in os.walk(u'/home/nce/Изображения'):
         for filename in filenames:
             names.append(filename)
@@ -99,7 +100,8 @@ if allow_filewalking:
 
 if allow_txt_file:
     import codecs
-    # TODO: Raise an exception, if file doesn't exist.
+    # TODO: Raise an exception, if file doesn't exist;
+    # print message: "The file 'examples.txt' is not found."
     f = codecs.open('examples.txt', 'r', encoding='utf-8')
     # \_ despite 'r' mentioned, the mode will be set to 'rb' (on Unix)
     for line in f:
