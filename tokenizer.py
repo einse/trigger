@@ -103,9 +103,11 @@ if allow_txt_file:
     f = codecs.open('examples.txt', 'r', encoding='utf-8')
     # \_ despite 'r' mentioned, the mode will be set to 'rb' (on Unix)
     for line in f:
-        examples.append(filter(lambda v: v != '\n', line))
+        new_example = filter(lambda v: v != '\n', line)
         # \_ in text mode, this should take no effect on Windows:
         #    all end-of-lines should be altered automatically
+        if new_example:
+            examples.append(new_example)
     f.close()
 # To learn more on reading files in Python 2:
 # https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files
