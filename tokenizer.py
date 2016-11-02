@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 
+#
+# Output functions
+#
+
 def header(*strings):
     print ''
     print '#'
@@ -18,6 +22,11 @@ def show(*strings, **keyworded):
     print '~'
     print ''
 
+
+#
+# Program setting
+#
+
 #~ favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
 favorite_tokens = set([u'диз', u'мкрк'])
 forbidden_tokens = set([u'Снимок'])
@@ -27,6 +36,17 @@ limit_for_print = 100
 
 allow_filewalking = False
 allow_txt_file = True
+
+if __name__ == """__main__""":
+    import sys
+    arguments = sys.argv
+    arguments_length = len(arguments)
+    for argument in arguments:
+        if argument.isdigit():
+            limit_for_print = int(argument)
+        if argument == """scan""":
+            allow_filewalking, allow_txt_file = \
+                allow_txt_file, allow_filewalking
 
 
 #
