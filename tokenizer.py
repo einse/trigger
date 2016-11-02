@@ -99,14 +99,16 @@ def lexem_type(unicode_character):
     return lexem_category(unicode_character)[:1]
 
 header("""Create a lexem category map for every input string""")
+iterations_count = 0
 for number, sentence in enumerate(examples):
+    iterations_count = iterations_count + 1
     number = number + 1
     number_length = len(str(number))
     sentence_map = ''
     for position, symbol in enumerate(sentence):
         sentence_map = sentence_map + lexem_type(symbol)
     maps.append(sentence_map)
-    if number < limit_for_print:
+    if iterations_count <= limit_for_print:
         print number, sentence
         print ' ' * number_length, sentence_map
 
