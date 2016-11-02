@@ -78,10 +78,14 @@ if allow_txt_file:
     import codecs
     # TODO: Raise an exception, if file doesn't exist.
     f = codecs.open('examples.txt', 'r', encoding='utf-8')
-        # can 'rb' mode cause smth on Windows?
+    # \_ despite 'r' mentioned, the mode will be set to 'rb' (on Unix)
     for line in f:
         examples.append(filter(lambda v: v != '\n', line))
+        # \_ in text mode, this should take no effect on Windows:
+        #    all end-of-lines should be altered automatically
     f.close()
+# To learn more on reading files in Python 2:
+# https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files
 
 
 #
