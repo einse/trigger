@@ -36,6 +36,7 @@ limit_for_print = 100
 
 allow_filewalking = False
 allow_txt_file = True
+allow_print_tokens = False
 
 if __name__ == """__main__""":
     import sys
@@ -47,6 +48,8 @@ if __name__ == """__main__""":
         if argument == """scan""":
             allow_filewalking, allow_txt_file = \
                 allow_txt_file, allow_filewalking
+        if argument == """-t""":
+            allow_print_tokens = True
 
 
 #
@@ -195,18 +198,20 @@ for example_number, sentence in enumerate(examples):
 
 
 #
-# Print all the tokens of the current input portion
+# Print first N tokens of the current input portion
+# (where N is limit_for_print)
 #
 
-#~ iterations_count = 0
-#~ for number, sentence in enumerate(portion):
-    #~ iterations_count = iterations_count + 1
-    #~ if iterations_count > limit_for_print:
-        #~ break
-    #~ number = number + 1
-    #~ header('=' * 72, """Tokens list no.:""", number)
-    #~ for seat, token in enumerate(sentence):
-        #~ print seat, token
+if allow_print_tokens:
+    iterations_count = 0
+    for number, sentence in enumerate(portion):
+        iterations_count = iterations_count + 1
+        if iterations_count > limit_for_print:
+            break
+        number = number + 1
+        header('=' * 72, """Tokens list no.:""", number)
+        for seat, token in enumerate(sentence):
+            print seat, token
 
 
 #
