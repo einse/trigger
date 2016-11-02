@@ -201,19 +201,23 @@ for number, sentence in enumerate(portion):
 #
 # Print words rating
 # (top:
-count = 50
+limit_for_rating_output = 50
 
 asterisks = """*""" * 72
-header(asterisks, """Top""", count, """words""", asterisks)
+header(asterisks,
+       """Top""", limit_for_rating_output, """words""",
+       asterisks)
 
-nominees = sorted(words.keys(), key=lambda v: words[v], reverse=True)[:count*2]
+nominees = sorted(words.keys(),
+                  key=lambda v: words[v],
+                  reverse=True)[:limit_for_rating_output*2]
 real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
 black_list = set([u'png', u'scrot', u'x', u'Снимок', u'экрана', u'от'])
 white_list = filter(lambda v: v not in black_list, real_words)
 
-print u'{:5} {:5} {}'.format('Place', 'Count', 'Token')
+print u'{:5} {:5} {}'.format('Place', 'Freq.', 'Token')
 for place, token in enumerate(white_list):
-    if place >= count:
+    if place >= limit_for_rating_output:
         break
     print u'{:5} {:5} {}'.format(place+1, words[token], token)
 
