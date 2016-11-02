@@ -28,6 +28,7 @@ limit_for_print = 100
 allow_filewalking = False
 allow_txt_file = True
 
+
 #
 # Create a list for strings
 #
@@ -118,8 +119,13 @@ for number, sentence in enumerate(examples):
 #
 
 #~ header("""Print lexem category maps""")
-#~ for number, map in enumerate(maps):
-    #~ print number, map
+#~ iterations_count = 0
+#~ for number, _map in enumerate(maps):
+    #~ iterations_count = iterations_count + 1
+    #~ if iterations_count > limit_for_print:
+        #~ break
+    #~ number = number + 1
+    #~ print number, _map
 
 
 #
@@ -168,7 +174,12 @@ for example_number, sentence in enumerate(examples):
 # Print all the tokens of the current input portion
 #
 
+#~ iterations_count = 0
 #~ for number, sentence in enumerate(portion):
+    #~ iterations_count = iterations_count + 1
+    #~ if iterations_count > limit_for_print:
+        #~ break
+    #~ number = number + 1
     #~ header('=' * 72, """Tokens list no.:""", number)
     #~ for seat, token in enumerate(sentence):
         #~ print seat, token
