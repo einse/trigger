@@ -211,9 +211,10 @@ real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
 black_list = set([u'png', u'scrot', u'x', u'Снимок', u'экрана', u'от'])
 white_list = filter(lambda v: v not in black_list, real_words)
 
-for place, word in enumerate(white_list):
+print u'{:5} {:5} {}'.format('Place', 'Count', 'Token')
+for place, token in enumerate(white_list):
     if place >= count:
         break
-    print place+1, word
+    print u'{:5} {:5} {}'.format(place+1, words[token], token)
 
 show("""Tokens Index volume:""", len(words.keys()))
