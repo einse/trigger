@@ -67,7 +67,8 @@ if allow_filewalking:
     import os
     # TODO: Raise an exception, if directory doesn't exist.
     # TODO: Only scan the current directory(?)
-    for root, directories, filenames in os.walk(u'/home/nce/Изображения'):
+    images_folder = os.getenv("""HOME""") + u"""/Изображения"""
+    for root, directories, filenames in os.walk(images_folder):
         for filename in filenames:
             names.append(filename)
     for i, v in enumerate(names):
