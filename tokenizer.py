@@ -50,6 +50,8 @@ if __name__ == """__main__""":
                 allow_txt_file, allow_filewalking
         if argument == """-t""":
             allow_print_tokens = True
+        if argument == """delve""":
+            pass
 
 
 #
