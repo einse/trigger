@@ -5,7 +5,7 @@ A simple text parser.
 
 Just run the script "tokenizer.py" by using Python 2 interpreter:
 
-    ```python2 tokenizer.py```
+    python2 tokenizer.py
 
 If the current directory contains "example.txt", the script will read
 it; if strings provided, they will be tokenized: in that case the output
@@ -20,7 +20,7 @@ Otherwise, the usage info will be printed.
 You can also invoke usage info by adding '--help' key (note that the
 script execution will be halted, even if any other keys provided):
 
-    ```python2 tokenizer.py --help```
+    python2 tokenizer.py --help
 
 
 ## Developing and Contributing
