@@ -8,6 +8,8 @@ def lexem_category(character):
     """Returns Unicode Category name of the symbol."""
     # TODO: Raise an exception, if not unicode character (?)
     unicode_character = u'' + character
+    #~ unicode_character = character
+    # \_ Handle 'TypeError'
     import unicodedata
     category = unicodedata.category(unicode_character)
     return category
@@ -152,6 +154,7 @@ if allow_txt_file:
     with codecs.open("""examples.txt""", """r""",
                      encoding="""utf-8""") as f:
     # \_ despite 'r' mentioned, the mode will be set to 'rb' (on Unix)
+    # \_ Handle 'IOError'
         for line in f:
             new_example = filter(lambda v: v != '\n', line)
             # \_ in text mode, this should take no effect on Windows:
