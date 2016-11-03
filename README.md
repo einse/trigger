@@ -17,8 +17,8 @@ tokenized and the output will be following:
 
 If "examples.txt" is not found, the usage info will be printed.
 
-You can also invoke usage info by adding '--help' key (note that the
-script execution will be halted, even if any other keys provided):
+You can also invoke the usage info by typing ```--help``` (note that
+the script execution will be halted, even if any other keys provided):
 
     python2 tokenizer.py --help
 
