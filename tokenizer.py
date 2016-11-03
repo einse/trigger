@@ -282,13 +282,12 @@ white_list = filter(lambda v: v not in black_list, real_words)
 
 asterisks = """*""" * 72
 if limit_for_rating_output <= len(white_list):
-    header(asterisks,
-           """Top""", limit_for_rating_output, """words""",
-           asterisks)
+    rating_lines_count = limit_for_rating_output
 else:
-    header(asterisks,
-           """Top""", len(white_list), """words""",
-           asterisks)
+    rating_lines_count = len(white_list)
+header(asterisks,
+       """Top""", rating_lines_count, """words""",
+       asterisks)
 print u"""{:5} {:5} {}""".format("""Place""", """Freq.""", """Token""")
 for place, token in enumerate(white_list):
     if place >= limit_for_rating_output:
