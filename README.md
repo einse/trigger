@@ -7,21 +7,20 @@ Just run the script "tokenizer.py" by using Python 2 interpreter:
 
     python2 tokenizer.py
 
-If the current directory contains "example.txt", the script will read
-it; if strings provided, they will be tokenized: in that case the output
-will be following:
+If the current directory contains a file named "examples.txt",
+the script will read it; then, if strings provided, they will be
+tokenized and the output will be following:
 
 + All read strings with a 'lexem category map' for each of them.
-+ A rating of processed words (tokens).
-+ Tokens Index volume.
++ Words rating (top 50 or less).
++ Size of tokens index.
 
-Otherwise, the usage info will be printed.
+If "examples.txt" is not found, the usage info will be printed.
 
 You can also invoke usage info by adding '--help' key (note that the
 script execution will be halted, even if any other keys provided):
 
     python2 tokenizer.py --help
-
 
 ## Developing and Contributing
 
