@@ -5,22 +5,22 @@
 #
 
 def header(*strings):
-    print ''
-    print '#'
+    print """"""
+    print """#"""
     for string in strings:
-        print '#', string
-    print '#'
-    print ''
+        print """#""", string
+    print """#"""
+    print """"""
 
 def show(*strings, **keyworded):
-    print ''
-    print '~'
+    print """"""
+    print """~"""
     for string in strings:
-        print '~', string
+        print """~""", string
     for string in keyworded:
-        pass  # edit
-    print '~'
-    print ''
+        pass
+    print """~"""
+    print """"""
 
 
 #
@@ -103,7 +103,7 @@ if allow_txt_file:
     import codecs
     # TODO: Raise an exception, if file doesn't exist;
     # print message: "The file 'examples.txt' is not found."
-    f = codecs.open('examples.txt', 'r', encoding='utf-8')
+    f = codecs.open("""examples.txt""", """r""", encoding="""utf-8""")
     # \_ despite 'r' mentioned, the mode will be set to 'rb' (on Unix)
     for line in f:
         new_example = filter(lambda v: v != '\n', line)
@@ -214,7 +214,7 @@ if allow_print_tokens:
         if iterations_count > limit_for_print:
             break
         number = number + 1
-        header('=' * 72, """Tokens list no.:""", number)
+        header("""=""" * 72, """Tokens list no.:""", number)
         for seat, token in enumerate(sentence):
             print seat, token
 
@@ -249,10 +249,10 @@ real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
 black_list = set([u'png', u'scrot', u'x', u'Снимок', u'экрана', u'от'])
 white_list = filter(lambda v: v not in black_list, real_words)
 
-print u'{:5} {:5} {}'.format('Place', 'Freq.', 'Token')
+print u"""{:5} {:5} {}""".format("""Place""", """Freq.""", """Token""")
 for place, token in enumerate(white_list):
     if place >= limit_for_rating_output:
         break
-    print u'{:5} {:5} {}'.format(place+1, words[token], token)
+    print u"""{:5} {:5} {}""".format(place+1, words[token], token)
 
 show("""Tokens Index volume:""", len(words.keys()))
