@@ -115,6 +115,7 @@ if allow_filewalking:
     import os
     # TODO: Raise an exception, if directory doesn't exist.
     for root, directories, filenames in os.walk(target_folder):
+    # \_ note that if 'target_folder' is invalid no error will be thrown
         for filename in filenames:
             names.append(filename)
     for i, v in enumerate(names):
