@@ -148,7 +148,7 @@ if allow_filewalking:
 #
 
 if allow_txt_file:
-    name_of_the_text_file = """examples.txt"""
+    name_of_the_text_file = """trgr_examples.txt"""
     import codecs
     try:
         with codecs.open(name_of_the_text_file, """r""",
