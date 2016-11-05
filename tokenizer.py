@@ -150,7 +150,6 @@ if allow_filewalking:
 if allow_txt_file:
     name_of_the_text_file = """examples.txt"""
     import codecs
-    # TODO: Raise an exception, if file doesn't exist.
     try:
         with codecs.open(name_of_the_text_file, """r""",
         # \_ on Unix, despite 'r' mentioned, the mode will be set to 'rb'
