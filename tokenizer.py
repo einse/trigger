@@ -62,7 +62,7 @@ def print_usage_and_halt():
 # Program settings
 #
 
-target_folder = """./"""
+target_folder = u"""./"""
 favorite_tokens = set([u'.'])
 forbidden_tokens = set()
 black_list = set()
@@ -120,11 +120,10 @@ if allow_filewalking:
         for filename in filenames:
             names.append(filename)
     for i, v in enumerate(names):
-        v = u'' + v  # should I handle UnicodeDecodeError?
         if filter_input_strings:
             found = False
             for favorite in favorite_tokens:
-                if v.find(favorite) == -1:  # here is the place
+                if v.find(favorite) == -1:
                     continue
                 else:
                     found = True
