@@ -1,7 +1,7 @@
 # trigger
 A simple text parser.
 
-## How to use it
+## How to Use It
 
 Just run the script "tokenizer.py" by using Python 2 interpreter:
 
@@ -31,3 +31,10 @@ to Public Domain, using CC0. Sorry for that.
 ## Legal and Licensing
 
 Please see the LICENSE file.
+
+## Technical Details
+
+The script hasn't yet been tested on memory usage, performance, or any
+other parameters. Be careful about that. Though it was mentioned in the
+LICENSE file, use the script at your own risk and please don't complain
+if things go wrong.
