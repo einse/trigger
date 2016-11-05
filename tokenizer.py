@@ -44,7 +44,7 @@ def show(*strings, **keyworded):
 def print_usage():
     print """Usage: python2 tokenizer.py [OPTIONS]
 OPTIONS can be provided in any order:
-    --help:         Invoke this message
+    --help          Invoke this message
     scan            Read filenames of the current directory and its
                     subdirectories, and tokenize them (note that
                     filenames without a period will be ignored)
