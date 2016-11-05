@@ -148,18 +148,23 @@ if allow_filewalking:
 #
 
 if allow_txt_file:
+    name_of_the_text_file = """examples.txt"""
     import codecs
     # TODO: Raise an exception, if file doesn't exist.
-    with codecs.open("""examples.txt""", """r""",
+    try:
+        with codecs.open(name_of_the_text_file, """r""",
+        # \_ on Unix, despite 'r' mentioned, the mode will be set to 'rb'
                      encoding="""utf-8""") as f:
-    # \_ despite 'r' mentioned, the mode will be set to 'rb' (on Unix)
-    # \_ Handle 'IOError'
-        for line in f:
-            new_example = filter(lambda v: v != '\n', line)
-            # \_ in text mode, this should take no effect on Windows:
-            #    all end-of-lines should be altered automatically
-            if new_example:
-                examples.append(new_example)
+            for line in f:
+                new_example = filter(lambda v: v != '\n', line)
+                # \_ in text mode, this should take no effect on Windows:
+                #    all end-of-lines should be altered automatically
+                if new_example:
+                    examples.append(new_example)
+    except IOError:
+        print_usage_and_halt()
+
+
 # To learn more on reading files in Python 2:
 # https://docs.python.org/2/tutorial/inputoutput.html#reading-and-writing-files
 
