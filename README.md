@@ -3,9 +3,9 @@ A simple text parser.
 
 ## How to Use It
 
-Just run the script "tokenizer.py" by using Python 2 interpreter:
+Just run the script "trigger.py" by using Python 2 interpreter:
 
-    python2 tokenizer.py
+    python2 trigger.py
 
 If the current directory contains a file named "examples.txt",
 the script will read it; then, if strings provided, they will be
@@ -21,7 +21,7 @@ You can also invoke the usage info by adding the ```--help``` flag
 (note that the script execution will be halted, even if any other flags
 provided):
 
-    python2 tokenizer.py --help
+    python2 trigger.py --help
 
 ## Developing and Contributing
 
