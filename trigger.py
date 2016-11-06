@@ -39,9 +39,10 @@ if __name__ == """__main__""":
             allow_print_tokens = True
         if argument == """delve""":
             pass
-        if argument == """--einse""":
+        if argument == """--images""":
             import os
             target_folder = os.getenv("""HOME""") + u"""/Изображения"""
+        if argument == """--filter""":
             favorite_tokens = set([u'диз', u'мкрк', u'фэт'])
             forbidden_tokens = set()
             black_list = set([u'png', u'scrot', u'x',
