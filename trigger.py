@@ -3,6 +3,7 @@
 from usage import print_usage, print_usage_and_halt
 from delver import delve
 from filewalker import scan
+from rating import print_rating
 
 
 # Set up variables
@@ -10,7 +11,7 @@ from filewalker import scan
 target_folder = u"""./"""
 favorite_tokens = set()
 forbidden_tokens = set()
-black_list = set()
+blacklist = set()
 
 limit_for_print = 5
 
@@ -37,7 +38,7 @@ if __name__ == """__main__""":
             target_folder = os.getenv("""HOME""") + u"""/Изображения"""
         if argument == """--filter""":
             favorite_tokens = set([u'диз', u'мкрк', u'фэт'])
-            black_list = set([u'png', u'scrot', u'x',
+            blacklist = set([u'png', u'scrot', u'x',
                   u'Снимок', u'экрана', u'от'])
         if argument == """--help""":
             print_usage_and_halt()
@@ -46,13 +47,17 @@ if __name__ == """__main__""":
 # Create a list for strings
 examples = []
 
+# Create a list for tokens lists
+tokens_lists = []
+
 # Read strings from a simple text file (.txt)
 if allow_txt_file:
     read, count, lists, count2 = delve("""trgr_examples.txt""")
-    if count == -1:
-        print_usage_and_halt()
-    else:
+    if count != -1:
         examples.extend(read)
+        tokens_lists.extend(lists)
+    else:
+        print_usage_and_halt()
 
 # Scan file system
 if allow_filewalking:
@@ -60,6 +65,7 @@ if allow_filewalking:
             scan(target_folder, favorite_tokens, forbidden_tokens)
     if count != -1:
         examples.extend(read)
+        tokens_lists.extend(lists)
 
 # Print examples
 for i, examples in enumerate(examples):
@@ -71,15 +77,24 @@ print ''
 
 # Print tokens lists
 if allow_print_tokens:
-    for i, list_ in enumerate(lists):
+    for i, _list in enumerate(tokens_lists):
         if i >= limit_for_print:
             break
         i = i + 1
         print """Tokens list no.""", i
-        for j, token in enumerate(list_):
+        for j, token in enumerate(_list):
             j = j + 1
             print j, token
         print '\n'
 
 # Print counts
 print """count:""", count, """\ncount2:""", count2
+
+# Print rating
+allow_rating = raw_input("""Print words rating? [Y/n]: """);
+if allow_rating == '':
+    allow_rating = 'Y'
+if allow_rating == 'Y' or allow_rating == 'y':
+    print_rating(tokens_lists, blacklist)
+else:
+    pass
