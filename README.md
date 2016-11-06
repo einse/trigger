@@ -9,11 +9,7 @@ Just run the script "trigger.py" by using Python 2 interpreter:
 
 If the current directory contains a file named "examples.txt",
 the script will read it; then, if strings provided, they will be
-tokenized and the output will be following:
-
-+ All read strings with a 'lexem category map' for each of them.
-+ Words rating (top 50 or less).
-+ Size of tokens index.
+tokenized.
 
 If "examples.txt" is not found, the usage info will be printed.
 
