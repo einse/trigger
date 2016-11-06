@@ -67,6 +67,10 @@ if allow_filewalking:
         examples.extend(read)
         tokens_lists.extend(lists)
 
+# Sort examples
+#~ examples = sorted(examples, reverse=True)
+# TODO: Learn to sort 'tokens_lists'
+
 # Print examples
 for i, examples in enumerate(examples):
     if i >= limit_for_print:
