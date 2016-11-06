@@ -99,6 +99,8 @@ allow_rating = raw_input("""Print words rating? [Y/n]: """);
 if allow_rating == '':
     allow_rating = 'Y'
 if allow_rating == 'Y' or allow_rating == 'y':
-    print_rating(tokens_lists, blacklist)
+    count, count2, count3 = print_rating(tokens_lists, blacklist)
+    print """all:""", count, """\nreal:""", count2,\
+                               """\nwhite:""", count3
 else:
     pass

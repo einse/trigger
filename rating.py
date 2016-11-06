@@ -2,7 +2,7 @@
 
 from lexem import lexem_type
 
-def print_rating(tokens_lists, blacklist = set(), rating_limit = 10):
+def print_rating(tokens_lists, blacklist = set(), rating_limit = 20):
     """Returns three numbers:
 1) count of all types of tokens,
 2) count of all real words in dictionary,
@@ -16,8 +16,7 @@ def print_rating(tokens_lists, blacklist = set(), rating_limit = 10):
                 words[token] = 1
     nominees = sorted(words.keys(),
                   key=lambda v: words[v],
-                  reverse=True)[:rating_limit*3]
-                  # \_ exceeding right bound for slices is ok in Python
+                  reverse=True)
     real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
     whitelist = filter(lambda v: v not in blacklist, real_words)
     for i, word in enumerate(whitelist):
