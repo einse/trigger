@@ -92,9 +92,7 @@ if __name__ == """__main__""":
             # Settings for the author's own purposes
             import os
             target_folder = os.getenv("""HOME""") + u"""/Изображения"""
-            #~ favorite_tokens = set([u'Снимок', u'scrot', u'мкрк'])
             favorite_tokens = set([u'диз', u'мкрк', u'фэт'])
-            #~ forbidden_tokens = set([u'Снимок'])
             forbidden_tokens = set()
             black_list = set([u'png', u'scrot', u'x',
                               u'Снимок', u'экрана', u'от'])
