@@ -72,9 +72,9 @@ print ''
 # Print tokens lists
 if allow_print_tokens:
     for i, list_ in enumerate(lists):
-        i = i + 1
         if i >= limit_for_print:
             break
+        i = i + 1
         print """Tokens list no.""", i
         for j, token in enumerate(list_):
             j = j + 1
