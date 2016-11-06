@@ -14,10 +14,11 @@ from tokenizer import print_usage, print_usage_and_halt
 #
 
 target_folder = u"""./"""
-favorite_tokens = set([u'.'])
+favorite_tokens = set([u'диз', u'мкрк', u'фэт'])
 forbidden_tokens = set()
-black_list = set()
-filter_input_strings = True
+black_list = set([u'png', u'scrot', u'x',
+                  u'Снимок', u'экрана', u'от'])
+filter_input_strings = False
 
 limit_for_print = 100
 
@@ -43,10 +44,7 @@ if __name__ == """__main__""":
             import os
             target_folder = os.getenv("""HOME""") + u"""/Изображения"""
         if argument == """--filter""":
-            favorite_tokens = set([u'диз', u'мкрк', u'фэт'])
-            forbidden_tokens = set()
-            black_list = set([u'png', u'scrot', u'x',
-                              u'Снимок', u'экрана', u'от'])
+            filter_input_strings = True
         if argument == """--help""":
             print_usage_and_halt()
 
@@ -217,7 +215,10 @@ nominees = sorted(words.keys(),
                   reverse=True)[:limit_for_rating_output*2]
                   # \_ exceeding right bound for slices is ok in Python
 real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
-white_list = filter(lambda v: v not in black_list, real_words)
+if filter_input_strings:
+    white_list = filter(lambda v: v not in black_list, real_words)
+else:
+    white_list = real_words
 
 asterisks = """*""" * 72
 if limit_for_rating_output <= len(white_list):
