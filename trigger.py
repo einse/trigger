@@ -235,3 +235,11 @@ for place, token in enumerate(white_list):
     print u"""{:5} {:5} {}""".format(place+1, words[token], token)
 
 show("""Tokens Index volume:""", len(words.keys()))
+
+
+#
+# Reading file system from scratch
+#
+
+examples = []
+strophes = []
