@@ -8,6 +8,7 @@ from tokenizer import lexem_category, lexem_type
 from tokenizer import header, show
 from tokenizer import print_usage, print_usage_and_halt
 from delver import delve
+from filewalker import scan
 
 
 #
@@ -60,36 +61,36 @@ examples = []
 # Read names of files
 #
 
-if allow_filewalking:
-    names = []
-    import os
-    # TODO: Raise an exception, if directory doesn't exist.
-    for root, directories, filenames in os.walk(target_folder):
-    # \_ note that if 'target_folder' is invalid no error will be thrown
-        for filename in filenames:
-            names.append(filename)
-    for i, v in enumerate(names):
-        if filter_input_strings:
-            found = False
-            for favorite in favorite_tokens:
-                if v.find(favorite) == -1:
-                    continue
-                else:
-                    found = True
-            if not found:
-                continue
-            found = False
-            for forbidden in forbidden_tokens:
-                if v.find(forbidden) == -1:
-                    continue
-                else:
-                    found = True
-            if found:
-                continue
-        examples.append(v)
-    show("""Count of read filenames:""", len(names))
-    show("""Count of input strings for tokenizer:""", len(examples))
-    del names[:]  # Is it necessary? Wouldn't GC erase it by himself?
+#~ if allow_filewalking:
+    #~ names = []
+    #~ import os
+    #~ # TODO: Raise an exception, if directory doesn't exist.
+    #~ for root, directories, filenames in os.walk(target_folder):
+    #~ # \_ note that if 'target_folder' is invalid no error will be thrown
+        #~ for filename in filenames:
+            #~ names.append(filename)
+    #~ for i, v in enumerate(names):
+        #~ if filter_input_strings:
+            #~ found = False
+            #~ for favorite in favorite_tokens:
+                #~ if v.find(favorite) == -1:
+                    #~ continue
+                #~ else:
+                    #~ found = True
+            #~ if not found:
+                #~ continue
+            #~ found = False
+            #~ for forbidden in forbidden_tokens:
+                #~ if v.find(forbidden) == -1:
+                    #~ continue
+                #~ else:
+                    #~ found = True
+            #~ if found:
+                #~ continue
+        #~ examples.append(v)
+    #~ show("""Count of read filenames:""", len(names))
+    #~ show("""Count of input strings for tokenizer:""", len(examples))
+    #~ del names[:]  # Is it necessary? Wouldn't GC erase it by himself?
 
 
 #
@@ -107,64 +108,64 @@ if allow_txt_file:
 #
 # Create a lexem category map for every input string
 #
-maps = []
-examples = sorted(examples, reverse=True)
+#~ maps = []
+#~ examples = sorted(examples, reverse=True)
 
-header("""Create a lexem category map for every input string""")
-iterations_count = 0
-for number, sentence in enumerate(examples):
-    iterations_count = iterations_count + 1
-    number = number + 1
-    number_length = len(str(number))
-    sentence_map = ''
-    for position, symbol in enumerate(sentence):
-        sentence_map = sentence_map + lexem_type(symbol)
-    maps.append(sentence_map)
-    if iterations_count <= limit_for_print:
-        print number, sentence
-        print ' ' * number_length, sentence_map
+#~ header("""Create a lexem category map for every input string""")
+#~ iterations_count = 0
+#~ for number, sentence in enumerate(examples):
+    #~ iterations_count = iterations_count + 1
+    #~ number = number + 1
+    #~ number_length = len(str(number))
+    #~ sentence_map = ''
+    #~ for position, symbol in enumerate(sentence):
+        #~ sentence_map = sentence_map + lexem_type(symbol)
+    #~ maps.append(sentence_map)
+    #~ if iterations_count <= limit_for_print:
+        #~ print number, sentence
+        #~ print ' ' * number_length, sentence_map
 
 
 #
 # Create a portion: lists of tokens (by one list per every input sentence)
 #
-portion = []
+#~ portion = []
 
-def no_space_conjunction(tag1, tag2):
-    """If two tags represent one number and one letter."""
-    if tag1 == 'L' and tag2 == 'N':
-        return True
-    elif tag1 == 'N' and tag2 == 'L':
-        return True
-    else:
-        return False
+#~ def no_space_conjunction(tag1, tag2):
+    #~ """If two tags represent one number and one letter."""
+    #~ if tag1 == 'L' and tag2 == 'N':
+        #~ return True
+    #~ elif tag1 == 'N' and tag2 == 'L':
+        #~ return True
+    #~ else:
+        #~ return False
 
-for example_number, sentence in enumerate(examples):
-    tokens = []
-    stack = []
-    previous_tag = ''
-    for position, symbol in enumerate(sentence):
-        tag = maps[example_number][position]
-        #~ print position, symbol, tag, previous_tag
-        if tag == 'L' or tag == 'N':
-            if no_space_conjunction(tag, previous_tag):
-                if stack:
-                    tokens.append(''.join(stack))
-                    del stack[:]
-                else:
-                    pass  # should be never reached
-            stack.append(symbol)
-        else:
-            if stack:
-                tokens.append(''.join(stack))
-                del stack[:]
-            tokens.append(symbol)
-        previous_tag = tag
-    else:
-        if stack:
-            tokens.append(''.join(stack))
-            del stack[:]
-    portion.append(tokens)
+#~ for example_number, sentence in enumerate(examples):
+    #~ tokens = []
+    #~ stack = []
+    #~ previous_tag = ''
+    #~ for position, symbol in enumerate(sentence):
+        #~ tag = maps[example_number][position]
+        #~ # print position, symbol, tag, previous_tag
+        #~ if tag == 'L' or tag == 'N':
+            #~ if no_space_conjunction(tag, previous_tag):
+                #~ if stack:
+                    #~ tokens.append(''.join(stack))
+                    #~ del stack[:]
+                #~ else:
+                    #~ pass  # should be never reached
+            #~ stack.append(symbol)
+        #~ else:
+            #~ if stack:
+                #~ tokens.append(''.join(stack))
+                #~ del stack[:]
+            #~ tokens.append(symbol)
+        #~ previous_tag = tag
+    #~ else:
+        #~ if stack:
+            #~ tokens.append(''.join(stack))
+            #~ del stack[:]
+    #~ portion.append(tokens)
 
 
 #
@@ -172,61 +173,61 @@ for example_number, sentence in enumerate(examples):
 # (where N is limit_for_print)
 #
 
-if allow_print_tokens:
-    iterations_count = 0
-    for number, sentence in enumerate(portion):
-        iterations_count = iterations_count + 1
-        if iterations_count > limit_for_print:
-            break
-        number = number + 1
-        header("""=""" * 72, """Tokens list no.:""", number)
-        for seat, token in enumerate(sentence):
-            print seat, token
+#~ if allow_print_tokens:
+    #~ iterations_count = 0
+    #~ for number, sentence in enumerate(portion):
+        #~ iterations_count = iterations_count + 1
+        #~ if iterations_count > limit_for_print:
+            #~ break
+        #~ number = number + 1
+        #~ header("""=""" * 72, """Tokens list no.:""", number)
+        #~ for seat, token in enumerate(sentence):
+            #~ print seat, token
 
 
 #
 # Gather tokens into statistics dictionary named words
 #
-words = {}
+#~ words = {}
 
-for number, sentence in enumerate(portion):
-    for seat, token in enumerate(sentence):
-        if token in words:
-            words[token] = words[token] + 1
-        else:
-            words[token] = 1
+#~ for number, sentence in enumerate(portion):
+    #~ for seat, token in enumerate(sentence):
+        #~ if token in words:
+            #~ words[token] = words[token] + 1
+        #~ else:
+            #~ words[token] = 1
 
 
 #
 # Print words rating
 # (top:
-limit_for_rating_output = 50
+#~ limit_for_rating_output = 50
 
-nominees = sorted(words.keys(),
-                  key=lambda v: words[v],
-                  reverse=True)[:limit_for_rating_output*2]
-                  # \_ exceeding right bound for slices is ok in Python
-real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
-if filter_input_strings:
-    white_list = filter(lambda v: v not in black_list, real_words)
-else:
-    white_list = real_words
+#~ nominees = sorted(words.keys(),
+                  #~ key=lambda v: words[v],
+                  #~ reverse=True)[:limit_for_rating_output*2]
+                  #~ # \_ exceeding right bound for slices is ok in Python
+#~ real_words = filter(lambda v: lexem_type(v[0]) == 'L', nominees)
+#~ if filter_input_strings:
+    #~ white_list = filter(lambda v: v not in black_list, real_words)
+#~ else:
+    #~ white_list = real_words
 
-asterisks = """*""" * 72
-if limit_for_rating_output <= len(white_list):
-    rating_lines_count = limit_for_rating_output
-else:
-    rating_lines_count = len(white_list)
-header(asterisks,
-       """Top""", rating_lines_count, """words""",
-       asterisks)
-print u"""{:5} {:5} {}""".format("""Place""", """Freq.""", """Token""")
-for place, token in enumerate(white_list):
-    if place >= limit_for_rating_output:
-        break
-    print u"""{:5} {:5} {}""".format(place+1, words[token], token)
+#~ asterisks = """*""" * 72
+#~ if limit_for_rating_output <= len(white_list):
+    #~ rating_lines_count = limit_for_rating_output
+#~ else:
+    #~ rating_lines_count = len(white_list)
+#~ header(asterisks,
+       #~ """Top""", rating_lines_count, """words""",
+       #~ asterisks)
+#~ print u"""{:5} {:5} {}""".format("""Place""", """Freq.""", """Token""")
+#~ for place, token in enumerate(white_list):
+    #~ if place >= limit_for_rating_output:
+        #~ break
+    #~ print u"""{:5} {:5} {}""".format(place+1, words[token], token)
 
-show("""Tokens Index volume:""", len(words.keys()))
+#~ show("""Tokens Index volume:""", len(words.keys()))
 
 
 #
@@ -234,4 +235,13 @@ show("""Tokens Index volume:""", len(words.keys()))
 #
 
 examples = []
-strophes = []
+strophes_names = []
+strophes_tokens = []
+
+if allow_filewalking:
+    strophes_names, strophes_tokens =\
+            scan(target_folder, favorite_tokens, forbidden_tokens)
+    for i, v in enumerate(strophes_names):
+        if i > limit_for_print:
+            break
+        print i, v
