@@ -7,6 +7,7 @@
 from tokenizer import lexem_category, lexem_type
 from tokenizer import header, show
 from tokenizer import print_usage, print_usage_and_halt
+from delver import delve
 
 
 #
@@ -96,20 +97,11 @@ if allow_filewalking:
 #
 
 if allow_txt_file:
-    name_of_the_text_file = """trgr_examples.txt"""
-    import codecs
-    try:
-        with codecs.open(name_of_the_text_file, """r""",
-        # \_ on Unix, despite 'r' mentioned, the mode will be set to 'rb'
-                     encoding="""utf-8""") as f:
-            for line in f:
-                new_example = filter(lambda v: v != '\n', line)
-                # \_ in text mode, this should take no effect on Windows:
-                #    all end-of-lines should be altered automatically
-                if new_example:
-                    examples.append(new_example)
-    except IOError:
+    read, error = delve("""trgr_examples.txt""")
+    if error == -1:
         print_usage_and_halt()
+    else:
+        examples.extend(read)
 
 
 #
