@@ -72,11 +72,11 @@ if allow_filewalking:
 # TODO: Learn to sort 'tokens_lists'
 
 # Print examples
-for i, examples in enumerate(examples):
+for i, example in enumerate(examples):
     if i >= limit_for_print:
         break
     i = i + 1
-    print i, examples
+    print i, example
 print ''
 
 # Print tokens lists
