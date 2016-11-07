@@ -4,6 +4,7 @@ from usage import print_usage, print_usage_and_halt
 from delver import delve
 from filewalker import scan
 from rating import print_rating
+from duplicates import search_for_duplicates
 
 
 # Set up variables
@@ -106,16 +107,7 @@ else:
     pass
 
 # Search for duplicate names
-nur = {}  # names' uniqueness rate
-for name in examples:
-    if name in nur:
-        nur[name] = nur[name] + 1
-    else:
-        nur[name] = 1
-duplicates_count = 0
-for name in nur.keys():
-    if nur[name] > 1:
-        duplicates_count = duplicates_count + 1
-        print u"""{} {}x: {}""".format(duplicates_count,\
-                                     nur[name], name)
+duplicates_count, duplicates_rates = search_for_duplicates(examples)
+for i, name in enumerate(duplicates_rates):
+    print u"""{} {}x: {}""".format(i+1, duplicates_rates[name], name)
 print """Duplicates count:""", duplicates_count
