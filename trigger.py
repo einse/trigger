@@ -4,6 +4,7 @@ from usage import print_usage, print_usage_and_halt
 from delver import delve
 from filewalker import scan
 from rating import print_rating
+from duplicates import search_for_duplicates
 
 
 # Set up variables
@@ -104,3 +105,9 @@ if allow_rating == 'Y' or allow_rating == 'y':
                                """\nwhite:""", count3
 else:
     pass
+
+# Search for duplicate names
+duplicates_count, duplicates_rates = search_for_duplicates(examples)
+for i, name in enumerate(duplicates_rates):
+    print u"""{} {}x: {}""".format(i+1, duplicates_rates[name], name)
+print """Duplicates count:""", duplicates_count
