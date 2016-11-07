@@ -72,11 +72,11 @@ if allow_filewalking:
 # TODO: Learn to sort 'tokens_lists'
 
 # Print examples
-for i, examples in enumerate(examples):
+for i, example in enumerate(examples):
     if i >= limit_for_print:
         break
     i = i + 1
-    print i, examples
+    print i, example
 print ''
 
 # Print tokens lists
@@ -104,3 +104,18 @@ if allow_rating == 'Y' or allow_rating == 'y':
                                """\nwhite:""", count3
 else:
     pass
+
+# Search for duplicate names
+nur = {}  # names' uniqueness rate
+for name in examples:
+    if name in nur:
+        nur[name] = nur[name] + 1
+    else:
+        nur[name] = 1
+duplicates_count = 0
+for name in nur.keys():
+    if nur[name] > 1:
+        duplicates_count = duplicates_count + 1
+        print u"""{} {}x: {}""".format(duplicates_count,\
+                                     nur[name], name)
+print """Duplicates count:""", duplicates_count
