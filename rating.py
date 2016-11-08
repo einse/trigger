@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
 from lexem import lexem_type
+from output import output
 
-def print_rating(tokens_lists, blacklist = set(), rating_limit = 20):
+def print_rating(a, t, tokens_lists, blacklist = set(), rating_limit = 20):
     """Returns three numbers:
 1) count of all types of tokens,
 2) count of all real words in dictionary,
@@ -23,5 +24,5 @@ def print_rating(tokens_lists, blacklist = set(), rating_limit = 20):
         if i >= rating_limit:
             break
         place = i + 1
-        print u"""{:5} {:5} {}""".format(place, words[word], word)
+        output(a, t, u"""{:5} {:5} {}""".format(place, words[word], word))
     return len(words), len(real_words), len(whitelist)

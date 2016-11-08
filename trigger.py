@@ -5,18 +5,22 @@ from delver import delve
 from filewalker import scan
 from rating import print_rating
 from duplicates import search_for_duplicates
+from output import output, clear_output_file
 
 
 # Set up variables
 
 target_folder = u"""./"""
+trgr_output_file_name = """trgr_output.txt"""
+t = trgr_output_file_name
+
 favorite_tokens = set()
 forbidden_tokens = set()
 blacklist = set()
 
 limit_for_print = 5
 
-allow_printing_to_files = False
+a = False  # allow_writing_to_files
 allow_filewalking = False
 allow_txt_file = True
 allow_printing_tokens = False
@@ -34,7 +38,7 @@ if __name__ == """__main__""":
         if argument == """-t""":
             allow_printing_tokens = True
         if argument == """-o""":
-            allow_printing_to_files = True
+            a = True
         if argument == """delve""":
             pass
         if argument == """--images""":
@@ -53,6 +57,10 @@ examples = []
 
 # Create a list for tokens lists
 tokens_lists = []
+
+# Erase output file
+clear_output_file(t)
+
 
 # Read strings from a simple text file (.txt)
 if allow_txt_file:
@@ -80,8 +88,8 @@ for i, example in enumerate(examples):
     if i >= limit_for_print:
         break
     i = i + 1
-    print i, example
-print ''
+    output(a, t, i, example)
+output(a, t, """""")
 
 # Print tokens lists
 if allow_printing_tokens:
@@ -89,28 +97,28 @@ if allow_printing_tokens:
         if i >= limit_for_print:
             break
         i = i + 1
-        print """Tokens list no.""", i
+        output(a, t, """Tokens list no.""", i)
         for j, token in enumerate(_list):
             j = j + 1
-            print j, token
-        print '\n'
+            output(j, token)
+        output(a, t, """\n""")
 
 # Print counts
-print """count:""", count, """\ncount2:""", count2
+output(a, t, """count:""", count, """\ncount2:""", count2)
 
 # Print rating
 allow_rating = raw_input("""Print words rating? [Y/n]: """);
-if allow_rating == '':
-    allow_rating = 'Y'
-if allow_rating == 'Y' or allow_rating == 'y':
-    count, count2, count3 = print_rating(tokens_lists, blacklist)
-    print """all:""", count, """\nreal:""", count2,\
-                               """\nwhite:""", count3
+if allow_rating == """""":
+    allow_rating = """Y"""
+if allow_rating == """Y""" or allow_rating == """y""":
+    count, count2, count3 = print_rating(a, t, tokens_lists, blacklist)
+    output(a, t, """all:""", count, """\nreal:""", count2,\
+                               """\nwhite:""", count3)
 else:
     pass
 
 # Search for duplicate names
 duplicates_count, duplicates_rates = search_for_duplicates(examples)
 for i, name in enumerate(duplicates_rates):
-    print u"""{} {}x: {}""".format(i+1, duplicates_rates[name], name)
-print """Duplicates count:""", duplicates_count
+    output(a, t, u"""{} {}x: {}""".format(i+1, duplicates_rates[name], name))
+output(a, t, """Duplicates count:""", duplicates_count)

@@ -7,6 +7,7 @@ OPTIONS can be provided in any order:
     scan ...........Read filenames of the current directory and its
                     subdirectories, and tokenize them
     <int> ..........Print only first <int> strings (default is 20)
+    -o .............Write the output to a file (trgr_output.txt)
     -t .............Print lists of tokens (for the first <int> strings)\
 """
 
