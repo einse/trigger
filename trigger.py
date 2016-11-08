@@ -18,7 +18,7 @@ favorite_tokens = set()
 forbidden_tokens = set()
 blacklist = set()
 
-limit_for_print = 5
+limit_for_print = 5  # TODO: when changed, update the usage info
 
 a = False  # allow_writing_to_files
 allow_filewalking = False
