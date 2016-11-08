@@ -16,10 +16,10 @@ blacklist = set()
 
 limit_for_print = 5
 
-allow_print_to_files = False
+allow_printing_to_files = False
 allow_filewalking = False
 allow_txt_file = True
-allow_print_tokens = False
+allow_printing_tokens = False
 
 if __name__ == """__main__""":
     import sys
@@ -32,9 +32,9 @@ if __name__ == """__main__""":
             allow_filewalking, allow_txt_file = \
                 allow_txt_file, allow_filewalking
         if argument == """-t""":
-            allow_print_tokens = True
+            allow_printing_tokens = True
         if argument == """-o""":
-            allow_print_to_files = True
+            allow_printing_to_files = True
         if argument == """delve""":
             pass
         if argument == """--images""":
@@ -84,7 +84,7 @@ for i, example in enumerate(examples):
 print ''
 
 # Print tokens lists
-if allow_print_tokens:
+if allow_printing_tokens:
     for i, _list in enumerate(tokens_lists):
         if i >= limit_for_print:
             break
