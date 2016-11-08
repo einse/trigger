@@ -59,7 +59,8 @@ examples = []
 tokens_lists = []
 
 # Erase output file
-clear_output_file(t)
+if a:
+    clear_output_file(t)
 
 
 # Read strings from a simple text file (.txt)
