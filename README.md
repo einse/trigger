@@ -8,12 +8,12 @@ The last version of Trigger got some troublesome issues:
 - [Fail on the '-t' key (#3)](https://github.com/einse/trigger/issues/3)
 - [Unintended output files (#4)](https://github.com/einse/trigger/issues/4)
 
-Please consider using older versions of Trigger instead:
+Please consider using older versions instead:
 
 - [v1.1](https://github.com/einse/trigger/releases/tag/v1.1)
 - [v1.0.2](https://github.com/einse/trigger/releases/tag/v1.0.2)
 
-Also please don't clone the Trigger repo, until the program get fixed.
+Also please don't clone the Trigger's repo, until the program get fixed.
 
 _They told me not to push untested changes to the 'master' branch... Let this be a lesson to me. - S. A._
 
