@@ -25,7 +25,7 @@ Just run the script "trigger.py" by using Python 2 interpreter:
 
 If the current directory contains a file named "trgr_examples.txt",
 the script will read it; then, if strings provided, they will be
-tokenized.
+tokenized and printed.
 
 If "trgr_examples.txt" is not found, the usage info will be printed.
 
