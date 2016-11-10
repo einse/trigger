@@ -3,7 +3,7 @@ A simple text parser.
 
 ## Status
 
-The last version of Trigger (1.1.1) has got two troublesome issues:
+The last version of Trigger (v1.1.1) has got two troublesome issues:
 
 - [Fail on the '-t' key (#3)](https://github.com/einse/trigger/issues/3)
 - [Unintended output files (#4)](https://github.com/einse/trigger/issues/4)
