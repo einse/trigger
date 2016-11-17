@@ -5,8 +5,8 @@ A simple text parser.
 
 All found bugs were fixed. Cloning the repo is welcome.
 
-The lastest stable version:
-[v1.1.1.1](https://github.com/einse/trigger/releases/tag/v1.1.1.1)
+The latest stable version:
+[v1.1.1.2](https://github.com/einse/trigger/releases/tag/v1.1.1.2)
 
 You can still use older versions instead:
 
