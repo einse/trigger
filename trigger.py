@@ -101,7 +101,7 @@ if allow_printing_tokens:
         output(a, t, """Tokens list no.""", i)
         for j, token in enumerate(_list):
             j = j + 1
-            output(j, token)
+            output(a, t, j, token)
         output(a, t, """\n""")
 
 # Print counts

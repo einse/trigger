@@ -3,19 +3,15 @@ A simple text parser.
 
 ## Status
 
-The last version of Trigger (v1.1.1) has got two troublesome issues:
+All found bugs were fixed. Cloning the repo is welcome.
 
-- [Fail on the '-t' key (#3)](https://github.com/einse/trigger/issues/3)
-- [Unintended output files (#4)](https://github.com/einse/trigger/issues/4)
+The lastest stable version:
+[v1.1.1.1](https://github.com/einse/trigger/releases/tag/v1.1.1.1)
 
-Please consider using older versions instead:
+You can still use older versions instead:
 
 - [v1.1](https://github.com/einse/trigger/releases/tag/v1.1)
 - [v1.0.2](https://github.com/einse/trigger/releases/tag/v1.0.2)
-
-Also please don't clone the Trigger's repo until the code gets fixed.
-
-_They told me not to push untested changes to the 'master' branch... Let this be a lesson to me. - S. A._
 
 ## How to Use It
 
