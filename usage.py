@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 def print_usage():
-    print """Usage: python2 tokenizer.py [OPTIONS]
+    print """Usage: python2 trigger.py [OPTIONS]
 OPTIONS can be provided in any order:
     --help .........Invoke this message
     scan ...........Read filenames of the current directory and its
